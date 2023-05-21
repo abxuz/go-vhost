@@ -1,0 +1,6 @@
+[submodule "go-vhost-frontend"]
+	path = go-vhost-frontend
+	url = git@github.com:xbugio/go-vhost-frontend.git
+[submodule "go-vhostd"]
+	path = go-vhostd
+	url = git@github.com:xbugio/go-vhostd.git
