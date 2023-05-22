@@ -6,11 +6,11 @@ COPY ./go-vhost-frontend/ .
 RUN yarn install && yarn build
 
 # Build the backend binary
-FROM golang:latest AS backend-build-stage
+FROM golang:alpine AS backend-build-stage
 WORKDIR /build
 COPY ./go-vhostd/ .
 COPY --from=frontend-build-stage /build/build/ ./html/
-RUN go build -tags netgo -ldflags "-s -w" -trimpath -o go-vhostd
+RUN go build -ldflags "-s -w" -trimpath -o go-vhostd
 
 # Deploy the application binary into a lean image
 FROM alpine:latest AS release-stage
