@@ -6,7 +6,7 @@ COPY ./go-vhost-frontend/ .
 RUN yarn install && yarn build
 
 # Build the backend binary
-FROM golang:alpine AS backend-build-stage
+FROM golang:1.20-alpine AS backend-build-stage
 WORKDIR /build
 COPY ./go-vhostd/ .
 COPY --from=frontend-build-stage /build/build/ ./html/
