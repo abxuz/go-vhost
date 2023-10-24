@@ -35,4 +35,4 @@ jobs:
         context: .
         push: true
         tags: registry.cn-hangzhou.aliyuncs.com/abxu/go-vhost:latest
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
