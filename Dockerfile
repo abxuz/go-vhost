@@ -15,7 +15,6 @@ RUN go build -ldflags "-s -w" -trimpath -o go-vhostd
 # Deploy the application binary into a lean image
 FROM alpine:latest AS release-stage
 COPY --from=backend-build-stage /build/go-vhostd /usr/bin/
-VOLUME /data
 WORKDIR /data
 COPY --from=backend-build-stage /build/config.yaml .
 ENTRYPOINT ["go-vhostd"]
