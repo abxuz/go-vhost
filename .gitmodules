@@ -1,6 +1,6 @@
 [submodule "go-vhost-frontend"]
 	path = go-vhost-frontend
-	url = https://github.com/xbugio/go-vhost-frontend.git
+	url = https://github.com/abxuz/go-vhost-frontend.git
 [submodule "go-vhostd"]
 	path = go-vhostd
-	url = https://github.com/xbugio/go-vhostd.git
+	url = https://github.com/abxuz/go-vhostd.git
