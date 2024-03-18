@@ -9,12 +9,12 @@ RUN yarn install && yarn build
 FROM golang:1.22-alpine AS backend-build-stage
 WORKDIR /build
 COPY ./go-vhostd/ .
-COPY --from=frontend-build-stage /build/build/ ./html/
+COPY --from=frontend-build-stage /build/build/ ./assets/html/
 RUN go build -ldflags "-s -w" -trimpath -o go-vhostd
 
 # Deploy the application binary into a lean image
 FROM alpine:latest AS release-stage
 COPY --from=backend-build-stage /build/go-vhostd /usr/bin/
 WORKDIR /data
-COPY --from=backend-build-stage /build/config.yaml .
-ENTRYPOINT ["go-vhostd"]
+ENTRYPOINT [ "go-vhostd" ]
+CMD [ "--init" ]
