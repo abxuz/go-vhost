@@ -7,10 +7,12 @@ RUN yarn install && yarn build
 
 # Build the backend binary
 FROM golang:alpine AS backend-build-stage
+ARG TARGETOS
+ARG TARGETARCH
 WORKDIR /build
 COPY ./go-vhostd/ .
 COPY --from=frontend-build-stage /build/build/ ./assets/html/
-RUN go build -ldflags "-s -w" -trimpath -o go-vhostd
+RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -ldflags "-s -w" -trimpath -o go-vhostd
 
 # Deploy the application binary into a lean image
 FROM alpine:latest AS release-stage
